@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X, Cog } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { siteConfig, telLink } from "@/lib/site-config";
+import logo from "@/assets/national-agency-logo.jpeg.asset.json";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -30,16 +31,16 @@ export function Navbar() {
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group" onClick={() => setOpen(false)}>
-          <span className="grid h-9 w-9 place-items-center rounded-md bg-gradient-hero text-brand-foreground shadow-card">
-            <Cog className="h-5 w-5 transition-transform group-hover:rotate-90" />
+        <Link to="/" className="flex items-center gap-2.5 group" onClick={() => setOpen(false)}>
+          <span className="grid h-11 w-11 place-items-center rounded-md bg-brand-deep shadow-card overflow-hidden">
+            <img src={logo.url} alt="National Agency logo" className="h-11 w-11 object-cover" />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="font-display text-base font-bold tracking-tight text-brand">
               {siteConfig.name}
             </span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              OEM Spare Parts
+              The Ultimate Choice
             </span>
           </span>
         </Link>

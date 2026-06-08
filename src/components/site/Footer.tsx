@@ -1,16 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Phone, MessageCircle, Mail, Cog } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
 import { siteConfig, waLink } from "@/lib/site-config";
+import logo from "@/assets/national-agency-logo.jpeg.asset.json";
 
 export function Footer() {
   return (
     <footer className="bg-brand-deep text-brand-foreground mt-20">
       <div className="container-x py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-md bg-gradient-accent text-primary-foreground">
-              <Cog className="h-5 w-5" />
-            </span>
+          <div className="flex items-center gap-3">
+            <img src={logo.url} alt="National Agency logo" className="h-12 w-12 rounded-md object-cover" />
             <span className="font-display text-lg font-bold">{siteConfig.name}</span>
           </div>
           <p className="mt-4 text-sm text-white/70 leading-relaxed">

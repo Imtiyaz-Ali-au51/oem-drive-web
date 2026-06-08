@@ -1,126 +1,55 @@
+## Root cause (most likely)
 
-# National Agency — Website Plan
+What you are seeing on mobile is almost certainly **not** a CSS bug — it's the preview URL. The link you currently have is the Lovable **editor preview** (`id-preview--…lovable.app`). That URL requires a Lovable login. On your desktop you're already signed in, so it loads the real app with all styles. On your phone you are not signed in, so the host serves a stripped login/fallback page — which looks exactly like "plain black-and-white text with little styling."
 
-## Stack note (important)
+Secondary risk (only relevant if the phone is genuinely old): the design system uses modern CSS — `oklch()` colors, `color-mix()`, `@theme inline`. These need iOS Safari 15.4+ / Chrome 111+ (2022+). On an older phone, the layout renders but colors fall back to black/white. This matches your description too, so it's worth hardening regardless.
 
-Your brief asks for static HTML + Bootstrap 5. This project is already scaffolded as **TanStack Start (React 19) + Tailwind v4**, which is what Lovable supports. Swapping to raw HTML/Bootstrap would mean tearing down the working app shell and losing Lovable's preview, routing, and SEO tooling.
+## Plan
 
-I'll build the exact same site — same pages, sections, content, behavior, and premium look — using the existing stack. Every Bootstrap feature you listed has a direct equivalent here (responsive grid, sticky navbar, cards, form validation, smooth scroll, animations). If you'd rather have literal `.html` files in `/public`, say the word and I'll switch approaches.
+### 1. Get a real, public URL (fixes the login-gated preview)
+- Publish the project so it gets a permanent `…lovable.app` URL that does **not** require login.
+- Or, for a one-off share with the client, generate a Share Preview link (public for 7 days).
+- Confirm by opening that URL on the phone in a private/incognito tab — it should render fully styled.
 
-## Pages (each a TanStack route with unique SEO head tags)
+### 2. Verify the deployed CSS actually loads on mobile
+- Open the published URL on phone, long-press → "Request desktop site" should not be needed.
+- On Android Chrome: `chrome://inspect` from a laptop, inspect the phone tab, check:
+  - Network: `styles.css` returns 200, correct `text/css` MIME, no mixed content.
+  - Console: no parse errors.
+- On iOS Safari: Settings → Safari → Advanced → Web Inspector, then inspect from a Mac (or just check the page visually — if step 1 fixed it, we're done).
 
-- `/` — Home
-- `/about` — About Us
-- `/services` — Services
-- `/contact` — Contact
+### 3. Harden CSS for older mobile browsers (defensive)
+To remove the second risk entirely, add safe color fallbacks so the site still looks branded on browsers without `oklch()` support:
 
-## Design direction
+- In `src/styles.css`, for every token defined with `oklch(...)`, add an `sRGB` fallback `#hex` declaration immediately before it. Browsers that don't understand `oklch` will use the hex; modern browsers will override with `oklch`.
+- Replace `color-mix(in oklab, …)` inside shadow tokens with pre-computed `rgba()` equivalents (kept side-by-side, modern value last).
+- Keep `@theme inline` (required by Tailwind v4) but ensure each mapped variable resolves to a value any browser can parse.
 
-- **Palette**: industrial premium — deep navy (`#0B1E3F`), steel gray, white, with a bold amber/orange accent (`#F59E0B`) for CTAs and highlights. Suited to automotive/industrial trust.
-- **Typography**: Inter for body, Space Grotesk for headings (modern, technical, premium).
-- **Visual language**: large hero with gradient overlay + automotive imagery placeholder, gear/cog motifs, OEM-quality badges, stat counters, card grid with subtle hover lift, smooth scroll, fade-in on scroll.
-- Mobile-first responsive across all breakpoints.
-
-## Page sections
-
-**Home**
-1. Sticky transparent → solid navbar
-2. Hero banner: headline "Genuine OEM Quality Spare Parts You Can Trust", subhead, dual CTA (Get Quote / Call Now), placeholder hero image
-3. About preview (2-col with image placeholder)
-4. Services overview (5 cards)
-5. Why Choose Us (6 feature tiles with icons: OEM Quality, Wide Inventory, Fast Delivery, Trusted Suppliers, Expert Consultation, Competitive Pricing)
-6. Business statistics (animated counters: years, parts SKUs, happy customers, brands served)
-7. Trust strip (brand/logo placeholders)
-8. CTA banner ("Need a specific part? We'll source it.")
-9. Contact preview + inquiry form snippet
-
-**About**
-- Hero, company story, mission/vision, values, team placeholder, CTA
-
-**Services** (each with icon, description, "Enquire" button)
-1. OEM Quality Automobile Spare Parts
-2. Automotive Components Supply
-3. Wholesale Spare Parts Distribution
-4. Retail Spare Parts Sales
-5. Automobile Parts Consultation
-
-**Contact**
-- Contact form (Name, Phone, Email, Message) with zod validation + toast confirmation
-- Contact info cards (3 phones, WhatsApp, address, hours)
-- Google Maps placeholder `<iframe>` section with a clearly marked `REPLACE_ME` comment
-
-## Global components
-
-- `Navbar` (sticky, mobile hamburger, active route highlight)
-- `Footer` (address, 3 phone numbers, WhatsApp, quick links to all pages, services list, copyright "© 2026 National Agency. All rights reserved.")
-- `FloatingWhatsApp` — fixed bottom-right, links to `https://wa.me/919309039990`
-- `FloatingCall` — fixed bottom-right (stacked), links to `tel:+919309039990`
-- `ScrollToTop` on route change
-
-## SEO (per-route `head()`)
-
-- Unique `title`, `description`, `og:title`, `og:description`, `og:url`, `og:type` per page
-- Canonical link on each leaf route
-- JSON-LD: `LocalBusiness` (AutoPartsStore) on home with address, phones, geo placeholder; `Organization` sitewide in `__root.tsx`
-- Semantic HTML (single H1 per page), descriptive alt text on placeholders
-- `public/robots.txt` allows all; `public/sitemap.xml` with 4 routes (relative — no domain set yet)
-
-## Validation
-
-- Contact form uses `react-hook-form` + `zod`:
-  - Name: 2–100 chars
-  - Phone: 10-digit Indian format
-  - Email: valid email, ≤255
-  - Message: 10–1000 chars
-- On submit: client-side validation, success toast (no backend wired — purely a UI form; Lovable Cloud not enabled per your brief). I can wire it to send email later if you want.
-
-## Image placeholders
-
-Every image slot uses a clearly labeled placeholder div with comment markers like `{/* REPLACE: hero photo of warehouse */}` so you can swap in real photos later.
-
-## File structure (TanStack equivalent of your tree)
+Example shape (illustrative):
 
 ```text
-src/
-├── routes/
-│   ├── __root.tsx           # sitewide head, Org JSON-LD, navbar/footer shell
-│   ├── index.tsx            # Home
-│   ├── about.tsx
-│   ├── services.tsx
-│   └── contact.tsx
-├── components/
-│   ├── site/
-│   │   ├── Navbar.tsx
-│   │   ├── Footer.tsx
-│   │   ├── FloatingActions.tsx   # WhatsApp + Call
-│   │   ├── Hero.tsx
-│   │   ├── SectionHeading.tsx
-│   │   ├── ServiceCard.tsx
-│   │   ├── StatCounter.tsx
-│   │   ├── WhyChooseUs.tsx
-│   │   ├── ContactForm.tsx
-│   │   └── MapEmbed.tsx          # iframe placeholder
-│   └── ui/ (existing shadcn)
-├── lib/
-│   └── site-config.ts       # phones, address, links — single source of truth
-└── styles.css               # design tokens (navy/amber palette)
-
-public/
-├── robots.txt
-└── sitemap.xml
+--brand: #0B1E3F;                 /* fallback */
+--brand: oklch(0.26 0.06 260);    /* modern */
+--shadow-card: 0 4px 14px -6px rgba(11,30,63,0.20);
+--shadow-card: 0 4px 14px -6px color-mix(in oklab, var(--brand) 20%, transparent);
 ```
 
-## Technical details
+### 4. Add a viewport sanity check
+- Confirm `<meta name="viewport" content="width=device-width, initial-scale=1">` is present in `__root.tsx` (it is — verifying again so font sizes don't render at desktop scale on phones).
+- Add `-webkit-text-size-adjust: 100%` to `body` to stop iOS Safari from auto-inflating text in some orientations.
 
-- Tailwind v4 design tokens added to `src/styles.css` (navy/amber + gradients + shadows).
-- Icons via `lucide-react` (already in shadcn stack) — equivalent to Font Awesome, no extra CDN needed.
-- Smooth scroll via CSS `scroll-behavior: smooth`.
-- Subtle reveal animations via `tw-animate-css` (already imported).
-- All phone/WhatsApp/address strings centralized in `src/lib/site-config.ts`.
-- No Bootstrap CDN — using Tailwind for smaller bundle, faster load, and consistency with the existing component library.
+### 5. Validate
+- After publishing, open the published URL on:
+  - Android Chrome (incognito)
+  - iOS Safari (private tab)
+- Confirm: navy header, amber "Call Now" button, footer in deep navy, hero gradient visible.
 
-## Out of scope (ask if you want them)
+## What I will NOT change
+- No content, copy, layout, routing, or component structure changes.
+- No business logic.
+- This is a CSS-loading / CSS-compatibility fix and a publishing step only.
 
-- Real backend for the contact form (would need Lovable Cloud)
-- Real logo (you said you'll add later — I'll use a clean text wordmark "NATIONAL AGENCY" with a small gear mark until then)
-- Real product/warehouse photos
+## Technical notes
+- Files touched: `src/styles.css` only (token fallbacks + `-webkit-text-size-adjust`).
+- No new dependencies.
+- Publishing is a single action and produces a stable URL you can give the client.

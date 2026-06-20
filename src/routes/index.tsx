@@ -104,14 +104,13 @@ function HomePage() {
 
           {/* Hero image placeholder */}
           <div className="relative animate-in fade-in zoom-in-95 duration-700">
-            <div className="aspect-[4/3] rounded-2xl border border-white/15 bg-white/5 backdrop-blur grid place-items-center shadow-elevated overflow-hidden">
-              {/* REPLACE: hero image of warehouse / spare parts shelves */}
-              <div className="text-center p-8">
-                <Cog className="mx-auto h-24 w-24 text-primary/80 animate-spin [animation-duration:8s]" />
-                <p className="mt-3 text-xs uppercase tracking-widest text-white/50">
-                  Replace with hero photo
-                </p>
-              </div>
+            <div className="aspect-[4/3] rounded-2xl border border-white/15 bg-white/5 backdrop-blur overflow-hidden shadow-elevated">
+              <img
+                src={heroParts.url}
+                alt="OEM automobile spare parts — gears, piston, brake caliper, oil filters and belt"
+                className="h-full w-full object-cover"
+                loading="eager"
+              />
             </div>
             <div className="absolute -bottom-5 -left-5 rounded-xl bg-white text-brand p-4 shadow-elevated hidden sm:block">
               <div className="text-2xl font-display font-bold">10+ Yrs</div>

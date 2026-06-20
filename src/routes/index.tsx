@@ -105,7 +105,7 @@ function HomePage() {
 
           {/* Hero image placeholder */}
           <div className="relative animate-in fade-in zoom-in-95 duration-700">
-            <div className="aspect-[4/3] rounded-2xl border border-white/15 bg-white/5 backdrop-blur overflow-hidden shadow-elevated">
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated">
               <img
                 src={heroParts.url}
                 alt="OEM automobile spare parts — gears, piston, brake caliper, oil filters and belt"

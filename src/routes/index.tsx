@@ -17,6 +17,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { StatCounter } from "@/components/site/StatCounter";
 import { ContactForm } from "@/components/site/ContactForm";
 import { siteConfig, telLink, waLink } from "@/lib/site-config";
+import heroParts from "@/assets/hero-parts.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({

@@ -8,12 +8,12 @@ export const siteConfig = {
   whatsapp: "919309039990",
   whatsappDisplay: "+91 9309039990",
   address: {
-    line: "Tilak Nagar, Bhilwara",
+    line: "12-G-4, Jain Chhatrawas Pass, Bhura Vihar, Tilak Nagar Main Road",
     region: "Rajasthan",
     country: "India",
-    full: "Tilak Nagar, Bhilwara, Rajasthan, India",
+    full: "12-G-4, Jain Chhatrawas Pass, Bhura Vihar, Tilak Nagar Main Road, Bhilwara – 311001, Rajasthan, India",
   },
-  email: "info@nationalagency.in",
+  email: "nationalagencybhl@gmail.com",
   hours: "Mon–Sat: 9:00 AM – 8:00 PM",
 };
 

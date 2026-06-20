@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Target, Eye, HeartHandshake, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import aboutUsImage from "@/assets/about-us.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -41,11 +42,13 @@ function AboutPage() {
       {/* STORY */}
       <section className="py-20">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="aspect-[5/4] rounded-2xl bg-secondary border border-border grid place-items-center shadow-card">
-            {/* REPLACE: company photo */}
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">
-              Replace with company photo
-            </span>
+          <div className="aspect-[5/4] rounded-2xl overflow-hidden border border-border shadow-card">
+            <img
+              src={aboutUsImage.url}
+              alt="National Agency warehouse with OEM automobile spare parts including transmission units, engine pistons, and wiring"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
           </div>
           <div>
             <SectionHeading eyebrow="Our Story" title="A Decade of Trust in Auto Spare Parts." />

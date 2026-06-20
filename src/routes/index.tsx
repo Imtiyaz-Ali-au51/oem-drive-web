@@ -124,11 +124,13 @@ function HomePage() {
       {/* ABOUT PREVIEW */}
       <section className="py-20">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="aspect-[5/4] rounded-2xl bg-secondary border border-border grid place-items-center shadow-card">
-            {/* REPLACE: photo of your store / team / inventory */}
-            <span className="text-xs uppercase tracking-widest text-muted-foreground">
-              Replace with business photo
-            </span>
+          <div className="aspect-[5/4] rounded-2xl overflow-hidden border border-border shadow-card">
+            <img
+              src={businessPhoto.url}
+              alt="National Agency warehouse with OEM automobile spare parts and team"
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
           </div>
           <div>
             <SectionHeading

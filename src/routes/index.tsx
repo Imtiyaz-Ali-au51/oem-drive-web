@@ -208,6 +208,112 @@ function HomePage() {
         </div>
       </section>
 
+      {/* BRANDS WE DEAL IN */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container-x">
+          <SectionHeading
+            center
+            eyebrow="Our Brand Partners"
+            title="Brands We Deal In"
+            subtitle="We supply trusted automotive spare part brands known for quality, reliability, and value."
+          />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {brands.map((b) => (
+              <div
+                key={b.name}
+                className="group relative rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
+              >
+                {b.owned && (
+                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                    <BadgeCheck className="h-3 w-3" /> Our Brand
+                  </span>
+                )}
+                <div className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-hero text-brand-foreground shadow-card">
+                  <b.icon className="h-7 w-7" />
+                </div>
+                <h3 className="mt-5 font-display text-xl font-bold text-brand tracking-tight">{b.name}</h3>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary">{b.focus}</p>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HYRAX — REGISTERED BRAND */}
+      <section className="py-20">
+        <div className="container-x">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-hero p-8 md:p-14 text-brand-foreground shadow-elevated">
+            <div aria-hidden className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/25 blur-3xl" />
+            <div aria-hidden className="absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
+            <div className="relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+                  <BadgeCheck className="h-3.5 w-3.5" /> Our Registered Brand
+                </span>
+                <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                  Hyrax <span className="text-primary">— Our Registered Brand</span>
+                </h2>
+                <p className="mt-4 max-w-2xl text-white/80 leading-relaxed">
+                  Hyrax is National Agency's own registered brand for automotive oil, lubricants, and coolant products.
+                  Currently, Hyrax products include radiator coolant, developed with a focus on reliable quality,
+                  vehicle protection, and everyday performance.
+                </p>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {hyraxBadges.map((b) => (
+                    <li
+                      key={b}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur"
+                    >
+                      <ShieldAlert className="h-3.5 w-3.5 text-primary" /> {b}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={`${waLink}?text=${encodeURIComponent("Hi, I'd like to inquire about Hyrax products.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md bg-gradient-accent px-6 py-3 text-sm font-semibold text-primary-foreground shadow-elevated hover:opacity-95 transition"
+                  >
+                    <MessageCircle className="h-4 w-4" /> Ask for Hyrax Products
+                  </a>
+                  <a
+                    href={hyraxTrademark.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition"
+                  >
+                    <FileText className="h-4 w-4" /> View Trademark Certificate
+                  </a>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="rounded-2xl border border-white/15 bg-white/5 p-8 backdrop-blur shadow-elevated">
+                  <div className="flex items-center justify-center">
+                    <div className="grid h-24 w-24 place-items-center rounded-2xl bg-gradient-accent text-primary-foreground shadow-elevated">
+                      <Droplets className="h-12 w-12" />
+                    </div>
+                  </div>
+                  <div className="mt-6 text-center">
+                    <div className="font-display text-3xl font-bold tracking-tight">HYRAX</div>
+                    <div className="mt-1 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                      Radiator Coolant
+                    </div>
+                    <p className="mt-4 text-sm text-white/75 leading-relaxed">
+                      Engineered for reliable cooling performance and long-term engine protection.
+                    </p>
+                  </div>
+                  <div className="mt-6 flex items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-2 text-xs font-semibold text-primary">
+                    <BadgeCheck className="h-4 w-4" /> Registered Trademark
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section className="py-20 bg-secondary/40">
         <div className="container-x">

@@ -41,7 +41,7 @@ export function Navbar() {
               {siteConfig.name}
             </span>
             <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-              The Ultimate Choice
+              {siteConfig.tagline}
             </span>
           </span>
         </Link>

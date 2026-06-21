@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Mail, Instagram } from "lucide-react";
 import { siteConfig, waLink } from "@/lib/site-config";
 import logo from "@/assets/national-agency-logo.jpeg.asset.json";
 

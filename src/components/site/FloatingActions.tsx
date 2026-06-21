@@ -1,4 +1,4 @@
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, Instagram } from "lucide-react";
 import { siteConfig, telLink, waLink } from "@/lib/site-config";
 
 export function FloatingActions() {

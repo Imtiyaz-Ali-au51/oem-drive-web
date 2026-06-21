@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Phone, MessageCircle, Mail } from "lucide-react";
+import { MapPin, Phone, MessageCircle, Mail, Instagram } from "lucide-react";
 import { siteConfig, waLink } from "@/lib/site-config";
 import logo from "@/assets/national-agency-logo.jpeg.asset.json";
 
@@ -79,6 +79,12 @@ export function Footer() {
               <Mail className="h-4 w-4 text-primary shrink-0" />
               <a href={`mailto:${siteConfig.email}`} className="hover:text-primary transition">
                 {siteConfig.email}
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Instagram className="h-4 w-4 text-primary shrink-0" />
+              <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">
+                Instagram: {siteConfig.instagramHandle}
               </a>
             </li>
           </ul>

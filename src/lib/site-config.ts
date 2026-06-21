@@ -15,6 +15,8 @@ export const siteConfig = {
   },
   email: "nationalagencybhl@gmail.com",
   hours: "Mon–Sat: 9:00 AM – 8:00 PM",
+  instagram: "https://www.instagram.com/nationalagency12/",
+  instagramHandle: "@nationalagency12",
 };
 
 export const waLink = `https://wa.me/${siteConfig.whatsapp}`;

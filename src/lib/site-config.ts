@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "National Agency",
-  tagline: "Genuine OEM Quality Automobile Spare Parts",
+  tagline: "OEM Quality at Aftermarket Prices",
   description:
     "Trusted trader and supplier of OEM quality automobile spare parts in Bhilwara, Rajasthan. Wholesale and retail distribution with expert consultation.",
   phones: ["9309039990", "8824288880", "8107868172"],

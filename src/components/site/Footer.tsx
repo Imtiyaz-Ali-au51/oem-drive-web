@@ -81,6 +81,12 @@ export function Footer() {
                 {siteConfig.email}
               </a>
             </li>
+            <li className="flex items-center gap-2">
+              <Instagram className="h-4 w-4 text-primary shrink-0" />
+              <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition">
+                Instagram: {siteConfig.instagramHandle}
+              </a>
+            </li>
           </ul>
         </div>
       </div>

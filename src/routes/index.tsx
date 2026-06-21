@@ -11,6 +11,13 @@ import {
   CheckCircle2,
   Phone,
   MessageCircle,
+  BadgeCheck,
+  Droplets,
+  Filter,
+  Disc3,
+  Lightbulb,
+  FileText,
+  ShieldAlert,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -19,6 +26,8 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { siteConfig, telLink, waLink } from "@/lib/site-config";
 import heroParts from "@/assets/hero-parts.png.asset.json";
 import businessPhoto from "@/assets/business-photo.png.asset.json";
+import hyraxTrademark from "@/assets/hyrax-trademark.pdf.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({

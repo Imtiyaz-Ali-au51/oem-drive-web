@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ShieldCheck,
@@ -7,6 +8,8 @@ import {
   Users,
   Tag,
   ArrowRight,
+  ArrowLeft,
+  ArrowRight as ArrowRightIcon,
   Cog,
   CheckCircle2,
   Phone,
@@ -19,17 +22,21 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { StatCounter } from "@/components/site/StatCounter";
 import { ContactForm } from "@/components/site/ContactForm";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
 import { siteConfig, telLink, waLink } from "@/lib/site-config";
 import ownerAndSon from "@/assets/owner-and-son.jpeg.asset.json";
-import businessPhoto from "@/assets/business-photo.png.asset.json";
+import frontOfficeWithStockkeeper from "@/assets/front-office-with-stockkeeper.png.asset.json";
+import godown1 from "@/assets/godown-1.png.asset.json";
+import godown2 from "@/assets/godown-2.png.asset.json";
+import godown3 from "@/assets/godown-3.png.asset.json";
+import godown4 from "@/assets/godown-4.png.asset.json";
 import hyraxTrademark from "@/assets/hyrax-trademark.pdf.asset.json";
 import hyraxLogo from "@/assets/hyrax-logo.jpeg.asset.json";
 import zarrocLogo from "@/assets/zarroc-logo.jpeg.asset.json";
 import safilLogo from "@/assets/safil-logo.jpeg.asset.json";
 import panbrosLogo from "@/assets/panbros-logo.jpeg.asset.json";
 import hyraxCoolant from "@/assets/hyrax-coolant-product.jpeg.asset.json";
-
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,6 +97,38 @@ const brands = [
   },
 ];
 
+const aboutGallery = [
+  {
+    src: frontOfficeWithStockkeeper.url,
+    alt: "National Agency front office and stock counter with organized spare parts inventory",
+    caption: "Front Office & Stock Counter",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown1.url,
+    alt: "Organized godown storage with clearly stocked automotive spare parts shelves",
+    caption: "Organized Godown Storage",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown2.url,
+    alt: "Spare parts inventory arranged neatly on shelves for fast access and dispatch",
+    caption: "Spare Parts Inventory",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown3.url,
+    alt: "Well-stocked product racks inside National Agency godown",
+    caption: "Well-Stocked Product Racks",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown4.url,
+    alt: "Wholesale stock management area with boxed wiper blades and automotive accessories",
+    caption: "Wholesale Stock Management",
+    imageClassName: "object-cover object-center",
+  },
+];
 
 const hyraxBadges = [
   "Registered Trademark",
@@ -100,6 +139,28 @@ const hyraxBadges = [
 ];
 
 function HomePage() {
+  const [aboutCarouselApi, setAboutCarouselApi] = useState<CarouselApi>();
+  const [aboutCurrent, setAboutCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!aboutCarouselApi) {
+      return;
+    }
+
+    const updateCurrent = () => {
+      setAboutCurrent(aboutCarouselApi.selectedScrollSnap());
+    };
+
+    updateCurrent();
+    aboutCarouselApi.on("select", updateCurrent);
+    aboutCarouselApi.on("reInit", updateCurrent);
+
+    return () => {
+      aboutCarouselApi.off("select", updateCurrent);
+      aboutCarouselApi.off("reInit", updateCurrent);
+    };
+  }, [aboutCarouselApi]);
+
   return (
     <SiteLayout>
       {/* HERO */}
@@ -144,7 +205,6 @@ function HomePage() {
             </div>
           </div>
 
-          {/* Hero image placeholder */}
           <div className="relative animate-in fade-in zoom-in-95 duration-700 mx-auto w-full max-w-md lg:max-w-none">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-elevated bg-secondary/30">
               <img
@@ -165,26 +225,77 @@ function HomePage() {
       {/* ABOUT PREVIEW */}
       <section className="py-20">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="aspect-[5/4] rounded-2xl overflow-hidden border border-border shadow-card">
-            <img
-              src={businessPhoto.url}
-              alt="National Agency warehouse with OEM automobile spare parts and team"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
+          <div className="rounded-2xl border border-border bg-card p-3 shadow-card">
+            <Carousel setApi={setAboutCarouselApi} opts={{ loop: true }} className="w-full">
+              <div className="relative overflow-hidden rounded-xl bg-secondary/40">
+                <CarouselContent className="ml-0">
+                  {aboutGallery.map((photo, index) => (
+                    <CarouselItem key={photo.caption} className="pl-0">
+                      <div className="group relative aspect-[4/5] overflow-hidden bg-secondary/20 md:aspect-[10/11] lg:aspect-[4/5]">
+                        <img
+                          src={photo.src}
+                          alt={photo.alt}
+                          className={`h-full w-full ${photo.imageClassName} transition-transform duration-500 ease-out group-hover:scale-[1.02]`}
+                          loading={index === 0 ? "eager" : "lazy"}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand/85 via-brand/40 to-transparent px-5 py-4">
+                          <p className="text-sm font-medium text-brand-foreground md:text-base">{photo.caption}</p>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="secondary"
+                  onClick={() => aboutCarouselApi?.scrollPrev()}
+                  className="absolute left-3 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full border border-white/20 bg-white/90 text-brand shadow-card hover:bg-white"
+                  aria-label="Previous photo"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="secondary"
+                  onClick={() => aboutCarouselApi?.scrollNext()}
+                  className="absolute right-3 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full border border-white/20 bg-white/90 text-brand shadow-card hover:bg-white"
+                  aria-label="Next photo"
+                >
+                  <ArrowRightIcon className="h-4 w-4" />
+                </Button>
+              </div>
+            </Carousel>
+
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {aboutGallery.map((photo, index) => (
+                <button
+                  key={photo.caption}
+                  type="button"
+                  onClick={() => aboutCarouselApi?.scrollTo(index)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    aboutCurrent === index ? "w-8 bg-primary" : "w-2.5 bg-border hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Go to ${photo.caption}`}
+                  aria-current={aboutCurrent === index}
+                />
+              ))}
+            </div>
           </div>
           <div>
             <SectionHeading
               eyebrow="About National Agency"
-              title="A Trusted Name in OEM Automobile Spare Parts."
-              subtitle="From engine components to electrical systems, we supply OEM-quality parts that workshops and dealers across India rely on. Our commitment is simple — genuine parts, fair pricing, and dependable service."
+              title="A Trusted Name in Automotive Spare Parts Since 2012."
+              subtitle="National Agency supplies genuine and OEM-quality automotive spare parts, lubricants, accessories, and replacement components to wholesalers, retailers, mechanics, and workshops. With a well-stocked inventory, organized godown, and customer-first service, we help buyers get the right parts at the right price."
             />
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {[
-                "OEM-grade components",
-                "Wholesale & retail",
+                "OEM-quality components",
                 "Expert sourcing",
-                "Pan-India dispatch",
+                "Wholesale & retail",
+                "Fast dispatch",
               ].map((t) => (
                 <li key={t} className="flex items-center gap-2 text-sm">
                   <CheckCircle2 className="h-4 w-4 text-primary" /> {t}
@@ -235,7 +346,6 @@ function HomePage() {
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -317,7 +427,6 @@ function HomePage() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -458,3 +567,4 @@ function HomePage() {
     </SiteLayout>
   );
 }
+

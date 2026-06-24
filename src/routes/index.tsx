@@ -214,26 +214,32 @@ function HomePage() {
             title="Brands We Deal In"
             subtitle="We supply trusted automotive spare part brands known for quality, reliability, and value."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {brands.map((b) => (
               <div
                 key={b.name}
-                className="group relative rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
+                className="group flex flex-col rounded-2xl border border-border bg-white p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
               >
-                {b.owned && (
-                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
-                    <BadgeCheck className="h-3 w-3" /> Our Brand
-                  </span>
-                )}
-                <div className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-hero text-brand-foreground shadow-card">
-                  <b.icon className="h-7 w-7" />
+                <div className="flex h-28 items-center justify-center overflow-hidden rounded-xl bg-white">
+                  <img
+                    src={b.logo}
+                    alt={`${b.name} logo`}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-brand tracking-tight">{b.name}</h3>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary">{b.focus}</p>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+                <div className="mt-5 flex flex-1 flex-col text-center">
+                  <h3 className="font-display text-xl font-bold text-brand tracking-tight">{b.name}</h3>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary">{b.focus}</p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+                  <span className="mt-4 inline-flex items-center justify-center gap-1 self-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    Brand We Supply
+                  </span>
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 

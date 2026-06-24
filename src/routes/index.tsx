@@ -75,34 +75,25 @@ const why = [
 
 const brands = [
   {
-    name: "Hyrax",
-    focus: "Oil, Lubricants & Coolant",
-    desc: "National Agency's own registered brand for automotive oil, lubricant, and coolant products.",
-    icon: Droplets,
-    owned: true,
-  },
-  {
     name: "Zarroc",
     focus: "Automotive Filters",
     desc: "Air filters, oil filters, fuel filters, cabin filters, and all types of automotive filter products.",
-    icon: Filter,
-    owned: false,
+    logo: zarrocLogo.url,
   },
   {
     name: "Safil",
     focus: "Suspension Parts",
     desc: "Reliable suspension parts for smooth performance, durability, and vehicle stability.",
-    icon: Disc3,
-    owned: false,
+    logo: safilLogo.url,
   },
   {
     name: "Panbros",
     focus: "LED & Car Accessories",
     desc: "Automotive LED lighting products and car accessories for modern vehicle needs.",
-    icon: Lightbulb,
-    owned: false,
+    logo: panbrosLogo.url,
   },
 ];
+
 
 const hyraxBadges = [
   "Registered Trademark",

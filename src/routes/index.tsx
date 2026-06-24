@@ -12,10 +12,8 @@ import {
   Phone,
   MessageCircle,
   BadgeCheck,
-  Droplets,
-  Filter,
-  Disc3,
-  Lightbulb,
+  FileText,
+
   FileText,
   ShieldAlert,
 } from "lucide-react";

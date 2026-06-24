@@ -292,26 +292,36 @@ function HomePage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-8 backdrop-blur shadow-elevated">
-                  <div className="flex items-center justify-center">
-                    <div className="grid h-24 w-24 place-items-center rounded-2xl bg-gradient-accent text-primary-foreground shadow-elevated">
-                      <Droplets className="h-12 w-12" />
-                    </div>
+                <div className="rounded-2xl border border-white/15 bg-white p-6 backdrop-blur shadow-elevated">
+                  <div className="flex h-20 items-center justify-center">
+                    <img
+                      src={hyraxLogo.url}
+                      alt="Hyrax — National Agency's registered brand logo"
+                      className="max-h-full max-w-full object-contain"
+                    />
                   </div>
-                  <div className="mt-6 text-center">
-                    <div className="font-display text-3xl font-bold tracking-tight">HYRAX</div>
-                    <div className="mt-1 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                      Radiator Coolant
+                  <div className="mt-4 overflow-hidden rounded-xl bg-secondary/40">
+                    <img
+                      src={hyraxCoolant.url}
+                      alt="Hyrax Summer Cool radiator coolant 1L bottle"
+                      className="mx-auto h-64 w-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="mt-5 text-center">
+                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                      Summer Cool · Radiator Coolant
                     </div>
-                    <p className="mt-4 text-sm text-white/75 leading-relaxed">
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                       Engineered for reliable cooling performance and long-term engine protection.
                     </p>
                   </div>
-                  <div className="mt-6 flex items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-2 text-xs font-semibold text-primary">
+                  <div className="mt-5 flex items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-2 text-xs font-semibold text-primary">
                     <BadgeCheck className="h-4 w-4" /> Registered Trademark
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

@@ -20,7 +20,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { StatCounter } from "@/components/site/StatCounter";
 import { ContactForm } from "@/components/site/ContactForm";
 import { siteConfig, telLink, waLink } from "@/lib/site-config";
-import heroParts from "@/assets/hero-parts.png.asset.json";
+import ownerAndSon from "@/assets/owner-and-son.jpeg.asset.json";
 import businessPhoto from "@/assets/business-photo.png.asset.json";
 import hyraxTrademark from "@/assets/hyrax-trademark.pdf.asset.json";
 import hyraxLogo from "@/assets/hyrax-logo.jpeg.asset.json";
@@ -145,12 +145,12 @@ function HomePage() {
           </div>
 
           {/* Hero image placeholder */}
-          <div className="relative animate-in fade-in zoom-in-95 duration-700">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated">
+          <div className="relative animate-in fade-in zoom-in-95 duration-700 mx-auto w-full max-w-md lg:max-w-none">
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-elevated bg-secondary/30">
               <img
-                src={heroParts.url}
-                alt="OEM automobile spare parts — gears, piston, brake caliper, oil filters and belt"
-                className="h-full w-full object-cover"
+                src={ownerAndSon.url}
+                alt="National Agency owner and his son in branded polos at the Bhilwara showroom"
+                className="h-full w-full object-cover object-center"
                 loading="eager"
               />
             </div>

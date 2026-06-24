@@ -231,14 +231,14 @@ function HomePage() {
                 <CarouselContent className="ml-0">
                   {aboutGallery.map((photo, index) => (
                     <CarouselItem key={photo.caption} className="pl-0">
-                      <div className="group relative aspect-[5/4] overflow-hidden bg-secondary/20">
+                      <div className="group relative aspect-[4/5] overflow-hidden bg-secondary/20 md:aspect-[10/11] lg:aspect-[4/5]">
                         <img
                           src={photo.src}
                           alt={photo.alt}
-                          className={`h-full w-full ${photo.imageClassName} transition-transform duration-500 group-hover:scale-[1.02]`}
+                          className={`h-full w-full ${photo.imageClassName} transition-transform duration-500 ease-out group-hover:scale-[1.02]`}
                           loading={index === 0 ? "eager" : "lazy"}
                         />
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand/80 via-brand/35 to-transparent px-5 py-4">
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand/85 via-brand/40 to-transparent px-5 py-4">
                           <p className="text-sm font-medium text-brand-foreground md:text-base">{photo.caption}</p>
                         </div>
                       </div>

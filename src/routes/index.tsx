@@ -13,8 +13,6 @@ import {
   MessageCircle,
   BadgeCheck,
   FileText,
-
-  FileText,
   ShieldAlert,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";

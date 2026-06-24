@@ -27,6 +27,12 @@ import { siteConfig, telLink, waLink } from "@/lib/site-config";
 import heroParts from "@/assets/hero-parts.png.asset.json";
 import businessPhoto from "@/assets/business-photo.png.asset.json";
 import hyraxTrademark from "@/assets/hyrax-trademark.pdf.asset.json";
+import hyraxLogo from "@/assets/hyrax-logo.jpeg.asset.json";
+import zarrocLogo from "@/assets/zarroc-logo.jpeg.asset.json";
+import safilLogo from "@/assets/safil-logo.jpeg.asset.json";
+import panbrosLogo from "@/assets/panbros-logo.jpeg.asset.json";
+import hyraxCoolant from "@/assets/hyrax-coolant-product.jpeg.asset.json";
+
 
 
 export const Route = createFileRoute("/")({

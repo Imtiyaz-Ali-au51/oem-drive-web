@@ -12,10 +12,6 @@ import {
   Phone,
   MessageCircle,
   BadgeCheck,
-  Droplets,
-  Filter,
-  Disc3,
-  Lightbulb,
   FileText,
   ShieldAlert,
 } from "lucide-react";
@@ -27,6 +23,12 @@ import { siteConfig, telLink, waLink } from "@/lib/site-config";
 import heroParts from "@/assets/hero-parts.png.asset.json";
 import businessPhoto from "@/assets/business-photo.png.asset.json";
 import hyraxTrademark from "@/assets/hyrax-trademark.pdf.asset.json";
+import hyraxLogo from "@/assets/hyrax-logo.jpeg.asset.json";
+import zarrocLogo from "@/assets/zarroc-logo.jpeg.asset.json";
+import safilLogo from "@/assets/safil-logo.jpeg.asset.json";
+import panbrosLogo from "@/assets/panbros-logo.jpeg.asset.json";
+import hyraxCoolant from "@/assets/hyrax-coolant-product.jpeg.asset.json";
+
 
 
 export const Route = createFileRoute("/")({
@@ -69,34 +71,25 @@ const why = [
 
 const brands = [
   {
-    name: "Hyrax",
-    focus: "Oil, Lubricants & Coolant",
-    desc: "National Agency's own registered brand for automotive oil, lubricant, and coolant products.",
-    icon: Droplets,
-    owned: true,
-  },
-  {
     name: "Zarroc",
     focus: "Automotive Filters",
     desc: "Air filters, oil filters, fuel filters, cabin filters, and all types of automotive filter products.",
-    icon: Filter,
-    owned: false,
+    logo: zarrocLogo.url,
   },
   {
     name: "Safil",
     focus: "Suspension Parts",
     desc: "Reliable suspension parts for smooth performance, durability, and vehicle stability.",
-    icon: Disc3,
-    owned: false,
+    logo: safilLogo.url,
   },
   {
     name: "Panbros",
     focus: "LED & Car Accessories",
     desc: "Automotive LED lighting products and car accessories for modern vehicle needs.",
-    icon: Lightbulb,
-    owned: false,
+    logo: panbrosLogo.url,
   },
 ];
+
 
 const hyraxBadges = [
   "Registered Trademark",
@@ -217,26 +210,32 @@ function HomePage() {
             title="Brands We Deal In"
             subtitle="We supply trusted automotive spare part brands known for quality, reliability, and value."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {brands.map((b) => (
               <div
                 key={b.name}
-                className="group relative rounded-2xl border border-border bg-card p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
+                className="group flex flex-col rounded-2xl border border-border bg-white p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
               >
-                {b.owned && (
-                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">
-                    <BadgeCheck className="h-3 w-3" /> Our Brand
-                  </span>
-                )}
-                <div className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-hero text-brand-foreground shadow-card">
-                  <b.icon className="h-7 w-7" />
+                <div className="flex h-28 items-center justify-center overflow-hidden rounded-xl bg-white">
+                  <img
+                    src={b.logo}
+                    alt={`${b.name} logo`}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-brand tracking-tight">{b.name}</h3>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary">{b.focus}</p>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+                <div className="mt-5 flex flex-1 flex-col text-center">
+                  <h3 className="font-display text-xl font-bold text-brand tracking-tight">{b.name}</h3>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary">{b.focus}</p>
+                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
+                  <span className="mt-4 inline-flex items-center justify-center gap-1 self-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    Brand We Supply
+                  </span>
+                </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
@@ -289,26 +288,36 @@ function HomePage() {
                 </div>
               </div>
               <div className="relative">
-                <div className="rounded-2xl border border-white/15 bg-white/5 p-8 backdrop-blur shadow-elevated">
-                  <div className="flex items-center justify-center">
-                    <div className="grid h-24 w-24 place-items-center rounded-2xl bg-gradient-accent text-primary-foreground shadow-elevated">
-                      <Droplets className="h-12 w-12" />
-                    </div>
+                <div className="rounded-2xl border border-white/15 bg-white p-6 backdrop-blur shadow-elevated">
+                  <div className="flex h-20 items-center justify-center">
+                    <img
+                      src={hyraxLogo.url}
+                      alt="Hyrax — National Agency's registered brand logo"
+                      className="max-h-full max-w-full object-contain"
+                    />
                   </div>
-                  <div className="mt-6 text-center">
-                    <div className="font-display text-3xl font-bold tracking-tight">HYRAX</div>
-                    <div className="mt-1 text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-                      Radiator Coolant
+                  <div className="mt-4 overflow-hidden rounded-xl bg-secondary/40">
+                    <img
+                      src={hyraxCoolant.url}
+                      alt="Hyrax Summer Cool radiator coolant 1L bottle"
+                      className="mx-auto h-64 w-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="mt-5 text-center">
+                    <div className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                      Summer Cool · Radiator Coolant
                     </div>
-                    <p className="mt-4 text-sm text-white/75 leading-relaxed">
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                       Engineered for reliable cooling performance and long-term engine protection.
                     </p>
                   </div>
-                  <div className="mt-6 flex items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-2 text-xs font-semibold text-primary">
+                  <div className="mt-5 flex items-center justify-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-2 text-xs font-semibold text-primary">
                     <BadgeCheck className="h-4 w-4" /> Registered Trademark
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

@@ -205,12 +205,12 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="relative animate-in fade-in zoom-in-95 duration-700 mx-auto w-full max-w-md lg:max-w-none">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-elevated bg-secondary/30">
+          <div className="relative animate-in fade-in zoom-in-95 duration-700 mx-auto w-full max-w-lg lg:max-w-none">
+            <div className="aspect-[5/4] rounded-2xl overflow-hidden shadow-elevated bg-secondary/30 lg:aspect-[6/5]">
               <img
                 src={ownerAndSon.url}
                 alt="National Agency owner and his son in branded polos at the Bhilwara showroom"
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-[center_28%]"
                 loading="eager"
               />
             </div>

@@ -395,7 +395,11 @@ function HomePage() {
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
                   {b.parts && (
                     <div className="mt-4 text-left">
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand">Popular {b.name} Parts:</p>
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand">
+                        {b.name === "Zarroc" && "Popular Zarroc Filters:"}
+                        {b.name === "Safil" && "Popular Safil Parts:"}
+                        {b.name === "Panbros" && "Popular Panbros Products:"}
+                      </p>
                       <div className="flex flex-wrap gap-1.5">
                         {b.parts.map((part) => (
                           <span

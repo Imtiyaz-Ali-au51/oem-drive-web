@@ -379,7 +379,7 @@ function HomePage() {
                       </div>
                     </div>
                   )}
-                  <span className="mt-auto inline-flex items-center justify-center gap-1 self-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pt-3">
+                  <span className="mt-auto inline-flex items-center justify-center gap-1 self-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                     Brand We Supply
                   </span>
                 </div>

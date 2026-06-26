@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { BrandMarquee } from "@/components/site/BrandMarquee";
 import { StatCounter } from "@/components/site/StatCounter";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
@@ -321,6 +322,16 @@ function HomePage() {
             title="Brands We Deal In"
             subtitle="We supply trusted automotive spare part brands known for quality, reliability, and value."
           />
+          <div className="mt-10">
+            <BrandMarquee
+              brands={[
+                { name: "Zarroc", logo: zarrocLogo.url },
+                { name: "Safil", logo: safilLogo.url },
+                { name: "Panbros", logo: panbrosLogo.url },
+                { name: "Hyrax", logo: hyraxLogo.url },
+              ]}
+            />
+          </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {brands.map((b) => (
               <div

@@ -81,8 +81,22 @@ const brands = [
   {
     name: "Zarroc",
     focus: "Automotive Filters",
-    desc: "Air filters, oil filters, fuel filters, cabin filters, and all types of automotive filter products.",
+    desc: "National Agency supplies a wide range of Zarroc OEM-quality automotive filters designed for reliable filtration, engine protection, clean airflow, and long service life.",
     logo: zarrocLogo.url,
+    parts: [
+      "Air Filter",
+      "Oil Filter",
+      "Fuel Filter",
+      "Cabin Filter",
+      "AC Filter",
+      "Engine Air Filter",
+      "Diesel Filter",
+      "Filter Kit",
+      "Spin-on Oil Filter",
+      "Panel Air Filter",
+      "Round Air Filter",
+      "All Type Filters",
+    ],
   },
   {
     name: "Safil",
@@ -107,8 +121,23 @@ const brands = [
   {
     name: "Panbros",
     focus: "LED & Car Accessories",
-    desc: "Automotive LED lighting products and car accessories for modern vehicle needs.",
+    desc: "National Agency supplies Panbros OEM-quality LED lighting products, automotive bulbs, wipers, and car accessories for better visibility, safety, and vehicle convenience.",
     logo: panbrosLogo.url,
+    parts: [
+      "LED Headlight Bulb",
+      "LED Fog Light",
+      "LED DRL",
+      "LED Bulbs",
+      "Halogen Bulbs",
+      "Indicator Bulbs",
+      "Parking Bulbs",
+      "Tail Light Bulbs",
+      "Front Wiper",
+      "Rear Wiper",
+      "Rear Wiper with Arm",
+      "Wiper Motor",
+      "Wiper Accessories",
+    ],
   },
 ];
 
@@ -333,7 +362,7 @@ function HomePage() {
           <SectionHeading
             center
             eyebrow="Our Brand Partners"
-            title="Brands We Deal In"
+            title="OEM Brands We Deal In"
             subtitle="We supply trusted automotive spare part brands known for quality, reliability, and value."
           />
           <div className="mt-10">
@@ -350,7 +379,7 @@ function HomePage() {
             {brands.map((b) => (
               <div
                 key={b.name}
-                className="group flex flex-col rounded-2xl border border-border bg-white p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
+                className="group flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
               >
                 <div className="flex h-28 items-center justify-center overflow-hidden rounded-xl bg-white">
                   <img
@@ -366,7 +395,11 @@ function HomePage() {
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
                   {b.parts && (
                     <div className="mt-4 text-left">
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand">Popular {b.name} Parts:</p>
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand">
+                        {b.name === "Zarroc" && "Popular Zarroc Filters:"}
+                        {b.name === "Safil" && "Popular Safil Parts:"}
+                        {b.name === "Panbros" && "Popular Panbros Products:"}
+                      </p>
                       <div className="flex flex-wrap gap-1.5">
                         {b.parts.map((part) => (
                           <span

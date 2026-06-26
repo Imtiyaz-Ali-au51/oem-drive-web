@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { BrandMarquee } from "@/components/site/BrandMarquee";
 import { StatCounter } from "@/components/site/StatCounter";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";

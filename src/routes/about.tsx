@@ -141,9 +141,9 @@ function AboutPage() {
             <div className="grid grid-cols-2 gap-6 text-center">
               {[
                 ["10+", "Years"],
-                ["5000+", "SKUs"],
-                ["1500+", "Customers"],
-                ["50+", "Brands"],
+                ["10000+", "SKUs"],
+                ["850+", "Customers"],
+                ["40+", "Brands"],
               ].map(([n, l]) => (
                 <div key={l}>
                   <div className="font-display text-3xl font-bold text-brand">{n}</div>

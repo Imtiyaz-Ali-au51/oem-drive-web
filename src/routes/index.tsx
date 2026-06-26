@@ -87,8 +87,22 @@ const brands = [
   {
     name: "Safil",
     focus: "Suspension Parts",
-    desc: "Reliable suspension parts for smooth performance, durability, and vehicle stability.",
+    desc: "National Agency supplies a complete range of Safil OEM suspension components designed for smooth performance, durability, ride comfort, and long service life.",
     logo: safilLogo.url,
+    parts: [
+      "Coil Pad",
+      "Suspension Ball Joint",
+      "Shocker Mount",
+      "Suspension Bush",
+      "Upper Ball Joint",
+      "Retainer",
+      "Lower Ball Joint",
+      "Suspension Arm",
+      "Jumping Rod Bush",
+      "Tie Rod End",
+      "Stabilizer Link",
+      "Rack End",
+    ],
   },
   {
     name: "Panbros",
@@ -350,7 +364,22 @@ function HomePage() {
                   <h3 className="font-display text-xl font-bold text-brand tracking-tight">{b.name}</h3>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-primary">{b.focus}</p>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
-                  <span className="mt-4 inline-flex items-center justify-center gap-1 self-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  {b.parts && (
+                    <div className="mt-4 text-left">
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-brand">Popular {b.name} Parts:</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {b.parts.map((part) => (
+                          <span
+                            key={part}
+                            className="inline-flex items-center rounded-md border border-border bg-secondary/60 px-2 py-1 text-[11px] font-medium text-foreground hover:bg-primary/10 hover:border-primary/40 hover:text-primary transition"
+                          >
+                            {part}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <span className="mt-auto inline-flex items-center justify-center gap-1 self-center rounded-full border border-border bg-secondary/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                     Brand We Supply
                   </span>
                 </div>

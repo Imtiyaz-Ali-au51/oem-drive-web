@@ -87,8 +87,22 @@ const brands = [
   {
     name: "Safil",
     focus: "Suspension Parts",
-    desc: "Reliable suspension parts for smooth performance, durability, and vehicle stability.",
+    desc: "National Agency supplies a complete range of Safil OEM suspension components designed for smooth performance, durability, ride comfort, and long service life.",
     logo: safilLogo.url,
+    parts: [
+      "Coil Pad",
+      "Suspension Ball Joint",
+      "Shocker Mount",
+      "Suspension Bush",
+      "Upper Ball Joint",
+      "Retainer",
+      "Lower Ball Joint",
+      "Suspension Arm",
+      "Jumping Rod Bush",
+      "Tie Rod End",
+      "Stabilizer Link",
+      "Rack End",
+    ],
   },
   {
     name: "Panbros",

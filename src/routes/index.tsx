@@ -362,7 +362,7 @@ function HomePage() {
           <SectionHeading
             center
             eyebrow="Our Brand Partners"
-            title="Brands We Deal In"
+            title="OEM Brands We Deal In"
             subtitle="We supply trusted automotive spare part brands known for quality, reliability, and value."
           />
           <div className="mt-10">

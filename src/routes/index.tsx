@@ -379,7 +379,7 @@ function HomePage() {
             {brands.map((b) => (
               <div
                 key={b.name}
-                className="group flex flex-col rounded-2xl border border-border bg-white p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
+                className="group flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-card hover:shadow-elevated hover:-translate-y-1 hover:border-primary/50 transition"
               >
                 <div className="flex h-28 items-center justify-center overflow-hidden rounded-xl bg-white">
                   <img

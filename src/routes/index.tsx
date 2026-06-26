@@ -81,8 +81,22 @@ const brands = [
   {
     name: "Zarroc",
     focus: "Automotive Filters",
-    desc: "Air filters, oil filters, fuel filters, cabin filters, and all types of automotive filter products.",
+    desc: "National Agency supplies a wide range of Zarroc OEM-quality automotive filters designed for reliable filtration, engine protection, clean airflow, and long service life.",
     logo: zarrocLogo.url,
+    parts: [
+      "Air Filter",
+      "Oil Filter",
+      "Fuel Filter",
+      "Cabin Filter",
+      "AC Filter",
+      "Engine Air Filter",
+      "Diesel Filter",
+      "Filter Kit",
+      "Spin-on Oil Filter",
+      "Panel Air Filter",
+      "Round Air Filter",
+      "All Type Filters",
+    ],
   },
   {
     name: "Safil",
@@ -107,8 +121,23 @@ const brands = [
   {
     name: "Panbros",
     focus: "LED & Car Accessories",
-    desc: "Automotive LED lighting products and car accessories for modern vehicle needs.",
+    desc: "National Agency supplies Panbros OEM-quality LED lighting products, automotive bulbs, wipers, and car accessories for better visibility, safety, and vehicle convenience.",
     logo: panbrosLogo.url,
+    parts: [
+      "LED Headlight Bulb",
+      "LED Fog Light",
+      "LED DRL",
+      "LED Bulbs",
+      "Halogen Bulbs",
+      "Indicator Bulbs",
+      "Parking Bulbs",
+      "Tail Light Bulbs",
+      "Front Wiper",
+      "Rear Wiper",
+      "Rear Wiper with Arm",
+      "Wiper Motor",
+      "Wiper Accessories",
+    ],
   },
 ];
 

@@ -530,9 +530,9 @@ function HomePage() {
       <section className="py-16 bg-gradient-hero text-brand-foreground">
         <div className="container-x grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <StatCounter value={10} label="Years of Experience" />
-          <StatCounter value={5000} label="Parts in Inventory" />
-          <StatCounter value={1500} label="Happy Customers" />
-          <StatCounter value={50} label="Brands Served" />
+          <StatCounter value={10000} label="Parts in Inventory" />
+          <StatCounter value={850} label="Happy Customers" />
+          <StatCounter value={40} label="Brands Served" />
         </div>
       </section>
 

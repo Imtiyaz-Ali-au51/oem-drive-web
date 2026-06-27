@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Target, Eye, HeartHandshake, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  Target,
+  Eye,
+  HeartHandshake,
+  ShieldCheck,
+  ArrowRight,
+  CheckCircle2,
+  ArrowLeft,
+  ArrowRight as ArrowRightIcon,
+} from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
-import aboutUsImage from "@/assets/about-us.png.asset.json";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
+import frontOfficeWithStockkeeper from "@/assets/front-office-with-stockkeeper.png.asset.json";
+import godown1 from "@/assets/godown-1.png.asset.json";
+import godown2 from "@/assets/godown-2.png.asset.json";
+import godown3 from "@/assets/godown-3.png.asset.json";
+import godown4 from "@/assets/godown-4.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -22,7 +38,62 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
+const aboutGallery = [
+  {
+    src: frontOfficeWithStockkeeper.url,
+    alt: "National Agency front office and stock counter with organized spare parts inventory",
+    caption: "Front Office & Stock Counter",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown1.url,
+    alt: "Organized godown storage with clearly stocked automotive spare parts shelves",
+    caption: "Organized Godown Storage",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown2.url,
+    alt: "Spare parts inventory arranged neatly on shelves for fast access and dispatch",
+    caption: "Spare Parts Inventory",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown3.url,
+    alt: "Well-stocked product racks inside National Agency godown",
+    caption: "Well-Stocked Product Racks",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: godown4.url,
+    alt: "Wholesale stock management area with boxed wiper blades and automotive accessories",
+    caption: "Wholesale Stock Management",
+    imageClassName: "object-cover object-center",
+  },
+];
+
 function AboutPage() {
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!carouselApi) {
+      return;
+    }
+
+    const updateCurrent = () => {
+      setCurrent(carouselApi.selectedScrollSnap());
+    };
+
+    updateCurrent();
+    carouselApi.on("select", updateCurrent);
+    carouselApi.on("reInit", updateCurrent);
+
+    return () => {
+      carouselApi.off("select", updateCurrent);
+      carouselApi.off("reInit", updateCurrent);
+    };
+  }, [carouselApi]);
+
   return (
     <SiteLayout>
       {/* HERO */}
@@ -42,13 +113,64 @@ function AboutPage() {
       {/* STORY */}
       <section className="py-20">
         <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="aspect-[5/4] rounded-2xl overflow-hidden border border-border shadow-card">
-            <img
-              src={aboutUsImage.url}
-              alt="National Agency warehouse with OEM automobile spare parts including transmission units, engine pistons, and wiring"
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
+          <div className="rounded-2xl border border-border bg-card p-3 shadow-card">
+            <Carousel setApi={setCarouselApi} opts={{ loop: true }} className="w-full">
+              <div className="relative overflow-hidden rounded-xl bg-secondary/40">
+                <CarouselContent className="ml-0">
+                  {aboutGallery.map((photo, index) => (
+                    <CarouselItem key={photo.caption} className="pl-0">
+                      <div className="group relative aspect-[4/5] overflow-hidden bg-secondary/20 md:aspect-[10/11] lg:aspect-[4/5]">
+                        <img
+                          src={photo.src}
+                          alt={photo.alt}
+                          className={`h-full w-full ${photo.imageClassName} transition-transform duration-500 ease-out group-hover:scale-[1.02]`}
+                          loading={index === 0 ? "eager" : "lazy"}
+                        />
+                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand/85 via-brand/40 to-transparent px-5 py-4">
+                          <p className="text-sm font-medium text-brand-foreground md:text-base">{photo.caption}</p>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="secondary"
+                  onClick={() => carouselApi?.scrollPrev()}
+                  className="absolute left-3 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full border border-white/20 bg-white/90 text-brand shadow-card hover:bg-white"
+                  aria-label="Previous photo"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="secondary"
+                  onClick={() => carouselApi?.scrollNext()}
+                  className="absolute right-3 top-1/2 z-10 h-10 w-10 -translate-y-1/2 rounded-full border border-white/20 bg-white/90 text-brand shadow-card hover:bg-white"
+                  aria-label="Next photo"
+                >
+                  <ArrowRightIcon className="h-4 w-4" />
+                </Button>
+              </div>
+            </Carousel>
+
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {aboutGallery.map((photo, index) => (
+                <button
+                  key={photo.caption}
+                  type="button"
+                  onClick={() => carouselApi?.scrollTo(index)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    current === index ? "w-8 bg-primary" : "w-2.5 bg-border hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Go to ${photo.caption}`}
+                  aria-current={current === index}
+                />
+              ))}
+            </div>
           </div>
           <div>
             <SectionHeading eyebrow="Our Story" title="A Decade of Trust in Auto Spare Parts." />

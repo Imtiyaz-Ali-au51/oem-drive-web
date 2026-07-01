@@ -19,6 +19,7 @@ import godown1 from "@/assets/godown-1.png.asset.json";
 import godown2 from "@/assets/godown-2.png.asset.json";
 import godown3 from "@/assets/godown-3.png.asset.json";
 import godown4 from "@/assets/godown-4.png.asset.json";
+import hyraxCoolantRack from "@/assets/hyrax-coolant-rack.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

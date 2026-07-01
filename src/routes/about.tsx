@@ -47,6 +47,12 @@ const aboutGallery = [
     imageClassName: "object-cover object-center",
   },
   {
+    src: hyraxCoolantRack.url,
+    alt: "Hyrax radiator coolant bottles and boxes arranged on stock racks at National Agency",
+    caption: "Hyrax Coolant Stock Display",
+    imageClassName: "object-cover object-center",
+  },
+  {
     src: godown1.url,
     alt: "Organized godown storage with clearly stocked automotive spare parts shelves",
     caption: "Organized Godown Storage",

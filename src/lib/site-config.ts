@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "OEM Quality at Aftermarket Prices",
   description:
     "Trusted trader and supplier of OEM quality automobile spare parts in Bhilwara, Rajasthan. Wholesale and retail distribution with expert consultation.",
-  phones: ["9309039990", "8824288880", "8107868172"],
+  phones: ["9309039990", "8107868172"],
   primaryPhone: "9309039990",
   whatsapp: "919309039990",
   whatsappDisplay: "+91 9309039990",

@@ -38,6 +38,7 @@ import zarrocLogo from "@/assets/zarroc-logo.jpeg.asset.json";
 import safilLogo from "@/assets/safil-logo.jpeg.asset.json";
 import panbrosLogo from "@/assets/panbros-logo.jpeg.asset.json";
 import hyraxCoolant from "@/assets/hyrax-coolant-product.jpeg.asset.json";
+import hyraxCoolantRack from "@/assets/hyrax-coolant-rack.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -146,6 +147,12 @@ const aboutGallery = [
     src: frontOfficeWithStockkeeper.url,
     alt: "National Agency front office and stock counter with organized spare parts inventory",
     caption: "Front Office & Stock Counter",
+    imageClassName: "object-cover object-center",
+  },
+  {
+    src: hyraxCoolantRack.url,
+    alt: "Hyrax radiator coolant bottles and boxes arranged on stock racks at National Agency",
+    caption: "Hyrax Coolant Stock Display",
     imageClassName: "object-cover object-center",
   },
   {

@@ -36,7 +36,7 @@ import hyraxTrademark from "@/assets/hyrax-trademark.pdf.asset.json";
 import hyraxLogo from "@/assets/hyrax-logo.jpeg.asset.json";
 import zarrocLogo from "@/assets/zarroc-logo.jpeg.asset.json";
 import safilLogo from "@/assets/safil-logo.jpeg.asset.json";
-import panbrosLogo from "@/assets/panbros-logo.jpeg.asset.json";
+import panbrosLogo from "@/assets/panbros-logo.png.asset.json";
 import hyraxCoolant from "@/assets/hyrax-coolant-product.jpeg.asset.json";
 import hyraxCoolantRack from "@/assets/hyrax-coolant-rack.png.asset.json";
 

@@ -2,22 +2,13 @@ import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
+import { siteConfig } from "@/lib/site-config";
 
 const schema = z
   .object({
     name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
-    phone: z
-      .string()
-      .trim()
-      .max(10)
-      .optional()
-      .or(z.literal("")),
-    email: z
-      .string()
-      .trim()
-      .max(255)
-      .optional()
-      .or(z.literal("")),
+    phone: z.string().trim().max(10).optional().or(z.literal("")),
+    email: z.string().trim().max(255).optional().or(z.literal("")),
     preferredContact: z.enum(["phone", "whatsapp", "email"]),
     message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000),
   })
@@ -50,6 +41,9 @@ const schema = z
 type FormValues = z.infer<typeof schema>;
 type Errors = Partial<Record<keyof FormValues, string>>;
 
+const contactLabel = (v: FormValues["preferredContact"]) =>
+  v === "phone" ? "Phone Call" : v === "whatsapp" ? "WhatsApp" : "Email";
+
 export function ContactForm() {
   const [values, setValues] = useState<FormValues>({
     name: "",
@@ -81,9 +75,58 @@ export function ContactForm() {
     }
     setErrors({});
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 600));
+
+    const now = new Date().toLocaleString("en-IN", {
+      dateStyle: "full",
+      timeStyle: "short",
+      timeZone: "Asia/Kolkata",
+    });
+    const pref = contactLabel(values.preferredContact);
+
+    // 1) Email via mailto (opens user's mail client — no API keys exposed)
+    const subject = "New Website Enquiry - National Agency";
+    const emailBody =
+      `New Website Enquiry from National Agency Website\n\n` +
+      `Name:\n${values.name}\n\n` +
+      `Phone:\n${values.phone ? `+91 ${values.phone}` : "-"}\n\n` +
+      `Email:\n${values.email || "-"}\n\n` +
+      `Preferred Contact Method:\n${pref}\n\n` +
+      `Message / Requirement:\n${values.message}\n\n` +
+      `Source:\nNational Agency Website Quick Inquiry Form\n\n` +
+      `Date & Time:\n${now}\n`;
+    const mailto = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(emailBody)}`;
+
+    // 2) WhatsApp pre-filled message
+    const waText =
+      `*New Website Enquiry - National Agency*\n\n` +
+      `Name: ${values.name}\n` +
+      `Phone: ${values.phone ? `+91 ${values.phone}` : "-"}\n` +
+      `Email: ${values.email || "-"}\n` +
+      `Preferred Contact: ${pref}\n\n` +
+      `Requirement:\n${values.message}\n\n` +
+      `Source: National Agency Website Quick Inquiry Form`;
+    const waUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(waText)}`;
+
+    // Trigger email in a hidden iframe so it doesn't unload the page
+    try {
+      const iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = mailto;
+      document.body.appendChild(iframe);
+      setTimeout(() => iframe.remove(), 2000);
+    } catch {
+      /* ignore */
+    }
+
+    // Open WhatsApp in a new tab
+    window.open(waUrl, "_blank", "noopener,noreferrer");
+
     setSubmitting(false);
-    toast.success("Thanks! Your inquiry has been received. We'll contact you shortly.");
+    toast.success(
+      "Thank you! Your enquiry has been submitted. You can also send it directly on WhatsApp for faster response.",
+    );
     setValues({ name: "", phone: "", email: "", preferredContact: "phone", message: "" });
   };
 
@@ -188,6 +231,10 @@ export function ContactForm() {
         <Send className="h-4 w-4" />
         {submitting ? "Sending…" : "Send Inquiry"}
       </button>
+      <p className="text-xs text-muted-foreground">
+        On submit, WhatsApp opens with your enquiry pre-filled and your email client opens a
+        pre-composed email to National Agency.
+      </p>
     </form>
   );
 }
